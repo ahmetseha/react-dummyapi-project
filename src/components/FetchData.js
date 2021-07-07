@@ -4,7 +4,7 @@ import axios from "axios";
 const BASE_URL = "https://dummyapi.io/data/api";
 const APP_ID = process.env.REACT_APP_API_KEY;
 
-const FetchData = () => {
+function FetchData() {
   const [data, setData] = useState();
 
   useEffect(() => {
@@ -14,8 +14,7 @@ const FetchData = () => {
   }, []);
 
   console.log(data);
-
   return <div></div>;
-};
+}
 
 export default FetchData;

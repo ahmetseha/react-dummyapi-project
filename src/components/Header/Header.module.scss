@@ -1,0 +1,31 @@
+.container {
+  display: flex;
+  align-items: center;
+  height: 100px;
+  background-color: rgb(194, 190, 190);
+  box-shadow: 2px 9px 20px -10px rgba(0, 0, 0, 1);
+  &__containerHead {
+    width: 100%;
+  }
+  &__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+  &__logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 36px;
+  }
+  &__items {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &__item {
+    font-size: 24px;
+    margin-left: 60px;
+    cursor: pointer;
+  }
+}
