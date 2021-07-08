@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 const BASE_URL = "https://dummyapi.io/data/api";
@@ -14,7 +14,7 @@ function FetchData() {
   }, []);
 
   console.log(data);
-  return <div></div>;
+  return data;
 }
 
 export default FetchData;

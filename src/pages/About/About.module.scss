@@ -1,0 +1,22 @@
+.container {
+  &__content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 100px;
+  }
+  &__image {
+    & img {
+      width: 250px;
+      border-radius: 50%;
+    }
+  }
+  &__about {
+    width: 50%;
+    margin-top: 50px;
+    & p {
+      text-align: justify;
+    }
+  }
+}
