@@ -1,13 +1,26 @@
 import "./App.css";
-// import FetchData from "./components/FetchData";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Header from "./components/Header/Header";
+import Home from "./pages/Home/Home";
+import About from "./pages/About/About";
+import Contact from "./pages/Contact/Contact";
 
 function App() {
   return (
-    <div className="App">
+    <BrowserRouter>
       <Header />
-      {/* <FetchData /> */}
-    </div>
+      <Switch>
+        <Route path="/" exact>
+          <Home />
+        </Route>
+        <Route path="/about">
+          <About />
+        </Route>
+        <Route path="/contact">
+          <Contact />
+        </Route>
+      </Switch>
+    </BrowserRouter>
   );
 }
 
