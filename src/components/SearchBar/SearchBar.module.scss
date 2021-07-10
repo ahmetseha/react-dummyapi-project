@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin: 70px auto;
+  max-width: 1100px;
+  & input {
+    padding: 10px;
+    font-size: 24px;
+    border-radius: 15px;
+    &:focus {
+      outline: none;
+    }
+  }
+}

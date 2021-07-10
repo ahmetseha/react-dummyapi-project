@@ -1,16 +1,21 @@
 .container {
-  padding: 8px;
+  margin-bottom: 20px;
   border: 1px solid #e6e6e6;
   border-radius: 9px;
   background-color: #e6e6e6;
-  text-align: center;
   &:hover {
     box-shadow: 0 7px 7px rgba(0, 0, 0, 0.15);
   }
   &__image {
     & img {
-      width: 100%;
+      padding: 8px;
       height: 250px;
     }
+  }
+  &__names {
+    padding: 8px;
+  }
+  &__email {
+    padding: 8px;
   }
 }
