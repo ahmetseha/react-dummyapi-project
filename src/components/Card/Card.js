@@ -1,6 +1,6 @@
 import styles from "./Card.module.scss";
 
-function Card({ image, alt, FirstName, LastName, email }) {
+function Card({ image, alt, FirstName, LastName, email, location }) {
   return (
     <div className={styles.container}>
       <div className={styles.container__image}>
@@ -13,6 +13,7 @@ function Card({ image, alt, FirstName, LastName, email }) {
       <div className={styles.container__email}>
         <p>{email}</p>
       </div>
+      <div>{location}</div>
     </div>
   );
 }

@@ -31,7 +31,7 @@ function CardContainer() {
   useEffect(() => {
     setIsLoading(true);
     axios
-      .get(`${BASE_URL}/user?limit=150`, { headers: { "app-id": APP_ID } })
+      .get(`${BASE_URL}/user?limit=50`, { headers: { "app-id": APP_ID } })
       .then((res) => setUsers(res.data))
       .catch(console.error)
       .finally(() => setIsLoading(false));
@@ -63,6 +63,7 @@ function CardContainer() {
                 FirstName={user.firstName}
                 LastName={user.lastName}
                 email={user.email}
+                location={user.location}
               />
             );
           })}

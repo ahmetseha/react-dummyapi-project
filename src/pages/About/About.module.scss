@@ -21,3 +21,17 @@
     }
   }
 }
+@media only screen and (max-width: 768px) {
+  .container {
+    &__about {
+      width: 75%;
+    }
+  }
+}
+@media only screen and (max-width: 500px) {
+  .container {
+    &__about {
+      width: 100%;
+    }
+  }
+}
