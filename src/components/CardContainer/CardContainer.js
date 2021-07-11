@@ -7,35 +7,38 @@ const BASE_URL = "https://dummyapi.io/data/api";
 const APP_ID = process.env.REACT_APP_API_KEY;
 
 function CardContainer() {
-  const [users, setUsers] = useState();
+  const [users, setUsers] = useState([]);
+  const [filtered, setFiltered] = useState([]);
+  const [result, setResult] = useState("");
   const [isloading, setIsLoading] = useState(true);
-  const [filterUsers, setFilterUsers] = useState("");
   const [visible, setVisible] = useState(15);
 
-  // const filtered = users.filter((user) => {
-  //   return Object.keys(user).some((key) =>
-  //     user[key]
-  //       .toString()
-  //       .toLowerCase()
-  //       .includes(filterUsers.toString().toLocaleLowerCase())
-  //   );
-  // });
-  // console.log(filtered);
-
-  const loadMore = () => {
-    setVisible(visible + 15);
-  };
-  const onChangeSubmit = (e) => {
-    setFilterUsers(e.target.value);
-  };
   useEffect(() => {
     setIsLoading(true);
     axios
       .get(`${BASE_URL}/user?limit=50`, { headers: { "app-id": APP_ID } })
       .then((res) => setUsers(res.data))
+      .then((res) => setFiltered(res.data))
       .catch(console.error)
       .finally(() => setIsLoading(false));
   }, []);
+
+  const onChangeSubmit = (e) => {
+    setResult(e.target.value);
+  };
+
+  useEffect(() => {
+    const results = users.filter((res) =>
+      res.firstName.toLowerCase().includes(result)
+    );
+    setUsers(results);
+  }, [result]);
+
+  console.log(users);
+
+  const loadMore = () => {
+    setVisible(visible + 15);
+  };
 
   return (
     <div className={styles.container}>
@@ -46,7 +49,7 @@ function CardContainer() {
         <div className={styles.container__searchBar}>
           <input
             placeholder="Search"
-            value={filterUsers}
+            value={result}
             onChange={onChangeSubmit}
           />
         </div>

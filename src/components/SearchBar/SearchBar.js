@@ -1,28 +1,35 @@
-// import { useState } from "react";
-// import CardContainer from "../CardContainer/CardContainer";
-// import styles from "./SearchBar.module.scss";
+import { useState } from "react";
 
-// function SearchBar() {
-//   const [filterUsers, setFilterUsers] = useState("");
+function SearchBar(props) {
+  const { onSearch } = props;
 
-//   const filtered = user.filter((item) => {
-//     return Object.keys(item).some((key) =>
-//       item[key]
-//         .toString()
-//         .toLowerCase()
-//         .includes(filterUsers.toLocaleLowerCase())
-//     );
-//   });
+  const [searchText, setSearchText] = useState("");
 
-//   return (
-//     <div className={styles.container}>
-//       <input
-//         placeholder="Search"
-//         value={filterUsers}
-//         onChange={(e) => setFilterUsers(e.target.value)}
-//       />
-//     </div>
-//   );
-// }
+  const handleInput = (e) => {
+    const text = e.target.value;
+    setSearchText(text);
+  };
 
-// export default SearchBar;
+  const handleEnterKeyPressed = (e) => {
+    if (e.key === "Enter") {
+      onSearch(searchText);
+    }
+  };
+
+  return (
+    <div>
+      <div className="control">
+        <input
+          className="input"
+          onChange={handleInput}
+          onKeyPress={handleEnterKeyPressed}
+          type="text"
+          value={searchText}
+          placeholder="Search your movies"
+        />
+      </div>
+    </div>
+  );
+}
+
+export default SearchBar;
