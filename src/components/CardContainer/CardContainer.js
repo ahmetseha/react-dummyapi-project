@@ -7,13 +7,27 @@ const BASE_URL = "https://dummyapi.io/data/api";
 const APP_ID = process.env.REACT_APP_API_KEY;
 
 function CardContainer() {
-  const [isloading, setIsLoading] = useState(true);
   const [users, setUsers] = useState();
+  const [isloading, setIsLoading] = useState(true);
+  const [filterUsers, setFilterUsers] = useState("");
 
+  // const filtered = users.filter((user) => {
+  //   return Object.keys(user).some((key) =>
+  //     user[key]
+  //       .toString()
+  //       .toLowerCase()
+  //       .includes(filterUsers.toString().toLocaleLowerCase())
+  //   );
+  // });
+  // console.log(filtered);
+
+  const onChangeSubmit = (e) => {
+    setFilterUsers(e.target.value);
+  };
   useEffect(() => {
     setIsLoading(true);
     axios
-      .get(`${BASE_URL}/user?limit=16`, { headers: { "app-id": APP_ID } })
+      .get(`${BASE_URL}/user?limit=15`, { headers: { "app-id": APP_ID } })
       .then((res) => setUsers(res.data))
       .catch(console.error)
       .finally(() => setIsLoading(false));
@@ -21,20 +35,37 @@ function CardContainer() {
 
   return (
     <div className={styles.container}>
-      {isloading && <div className={styles.loading}>Loading...</div>}
-      {users &&
-        users.data.map((user) => {
-          return (
-            <Card
-              key={user.id}
-              image={user.picture}
-              alt={user.firstName}
-              FirstName={user.firstName}
-              LastName={user.lastName}
-              email={user.email}
-            />
-          );
-        })}
+      <div className={styles.container__header}>
+        <div className={styles.container__head}>
+          <h1>USER LIST</h1>
+        </div>
+        <div className={styles.container__searchBar}>
+          <input
+            placeholder="Search"
+            value={filterUsers}
+            onChange={onChangeSubmit}
+          />
+        </div>
+      </div>
+      {isloading && <div className={styles.container__loading}>Loading...</div>}
+      <div className={styles.container__content}>
+        {users &&
+          users.data.map((user) => {
+            return (
+              <Card
+                key={user.id}
+                image={user.picture}
+                alt={user.firstName}
+                FirstName={user.firstName}
+                LastName={user.lastName}
+                email={user.email}
+              />
+            );
+          })}
+      </div>
+      <div className={styles.container__loadMore}>
+        <button>Load More</button>
+      </div>
     </div>
   );
 }

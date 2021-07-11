@@ -4,7 +4,6 @@ import Header from "./components/Header/Header";
 import Home from "./pages/Home/Home";
 import About from "./pages/About/About";
 import Contact from "./pages/Contact/Contact";
-import Footer from "./components/Footer/Footer";
 
 function App() {
   return (
@@ -21,7 +20,6 @@ function App() {
           <Contact />
         </Route>
       </Switch>
-      <Footer className="Footer" />
     </BrowserRouter>
   );
 }

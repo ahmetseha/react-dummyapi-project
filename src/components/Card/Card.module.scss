@@ -9,13 +9,21 @@
   &__image {
     & img {
       padding: 8px;
-      height: 250px;
+      border-radius: 6%;
+      height: 200px;
     }
   }
   &__names {
+    display: flex;
     padding: 8px;
+    & p:last-child {
+      margin-left: 7px;
+    }
   }
   &__email {
-    padding: 8px;
+    padding: 8px 8px 13px 8px;
+    & p {
+      font-size: 11px;
+    }
   }
 }

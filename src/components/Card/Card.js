@@ -10,7 +10,9 @@ function Card({ image, alt, FirstName, LastName, email }) {
         <p className={styles.container__firstname}>{FirstName}</p>
         <p className={styles.container__lastname}>{LastName}</p>
       </div>
-      <div className={styles.container__email}>{email}</div>
+      <div className={styles.container__email}>
+        <p>{email}</p>
+      </div>
     </div>
   );
 }

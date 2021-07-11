@@ -7,7 +7,7 @@ function Header() {
       <div className={styles.container__containerHead}>
         <header className={styles.container__head}>
           <NavLink to="/">
-            <div className={styles.container__logo}>PROJE</div>
+            <div className={styles.container__logo}>Ahmet Seha</div>
           </NavLink>
           <nav className={styles.container__menu}>
             <ul className={styles.container__items}>
