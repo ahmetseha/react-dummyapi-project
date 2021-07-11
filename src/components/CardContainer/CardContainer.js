@@ -8,7 +8,6 @@ const APP_ID = process.env.REACT_APP_API_KEY;
 
 function CardContainer() {
   const [users, setUsers] = useState([]);
-  const [filtered, setFiltered] = useState([]);
   const [result, setResult] = useState("");
   const [isloading, setIsLoading] = useState(true);
   const [visible, setVisible] = useState(15);
@@ -18,7 +17,6 @@ function CardContainer() {
     axios
       .get(`${BASE_URL}/user?limit=50`, { headers: { "app-id": APP_ID } })
       .then((res) => setUsers(res.data))
-      .then((res) => setFiltered(res.data))
       .catch(console.error)
       .finally(() => setIsLoading(false));
   }, []);
@@ -27,14 +25,22 @@ function CardContainer() {
     setResult(e.target.value);
   };
 
-  useEffect(() => {
-    const results = users.filter((res) =>
-      res.firstName.toLowerCase().includes(result)
-    );
-    setUsers(results);
-  }, [result]);
+  // useEffect(() => {
+  //   const results = users.filter((res) =>
+  //     res.firstName.toLowerCase().includes(result)
+  //   );
+  //   setUsers(results);
+  // }, [result]);
 
-  console.log(users);
+  const filtered = users.filter((item) => {
+    return Object.keys(item).some((key) => {
+      return item[key]
+        .toString()
+        .toLowerCase()
+        .includes(result.toString().toLocaleLowerCase());
+    });
+  });
+  console.log(filtered);
 
   const loadMore = () => {
     setVisible(visible + 15);
@@ -56,8 +62,8 @@ function CardContainer() {
       </div>
       {isloading && <div className={styles.container__loading}>Loading...</div>}
       <div className={styles.container__content}>
-        {users &&
-          users.data.slice(0, visible).map((user) => {
+        {filtered &&
+          filtered.slice(0, visible).map((user) => {
             return (
               <Card
                 key={user.id}
