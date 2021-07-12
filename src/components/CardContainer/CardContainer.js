@@ -16,7 +16,7 @@ function CardContainer() {
     setIsLoading(true);
     axios
       .get(`${BASE_URL}/user?limit=50`, { headers: { "app-id": APP_ID } })
-      .then((res) => setUsers(res.data))
+      .then((res) => setUsers(res.data.data))
       .catch(console.error)
       .finally(() => setIsLoading(false));
   }, []);
@@ -37,7 +37,7 @@ function CardContainer() {
       return item[key]
         .toString()
         .toLowerCase()
-        .includes(result.toString().toLocaleLowerCase());
+        .includes(result.toString().toLowerCase());
     });
   });
   console.log(filtered);
