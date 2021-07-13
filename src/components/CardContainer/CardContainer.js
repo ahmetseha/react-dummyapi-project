@@ -11,11 +11,14 @@ function CardContainer() {
   const [result, setResult] = useState("");
   const [isloading, setIsLoading] = useState(true);
   const [visible, setVisible] = useState(15);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     setIsLoading(true);
     axios
-      .get(`${BASE_URL}/user?limit=50`, { headers: { "app-id": APP_ID } })
+      .get(`${BASE_URL}/user?page=${page}&limit=15`, {
+        headers: { "app-id": APP_ID },
+      })
       .then((res) => setUsers(res.data.data))
       .catch(console.error)
       .finally(() => setIsLoading(false));
@@ -34,15 +37,12 @@ function CardContainer() {
 
   const filtered = users.filter((item) => {
     return Object.keys(item).some((key) => {
-      return item[key]
-        .toString()
-        .toLowerCase()
-        .includes(result.toString().toLowerCase());
+      return item[key].toString().toLowerCase().includes(result.toLowerCase());
     });
   });
-  console.log(filtered);
 
   const loadMore = () => {
+    setPage(page + 1);
     setVisible(visible + 15);
   };
 
@@ -67,6 +67,7 @@ function CardContainer() {
             return (
               <Card
                 key={user.id}
+                id={user.id}
                 image={user.picture}
                 alt={user.firstName}
                 FirstName={user.firstName}
