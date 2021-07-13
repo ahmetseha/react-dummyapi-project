@@ -5,7 +5,7 @@ import axios from "axios";
 const BASE_URL = "https://dummyapi.io/data/api";
 const APP_ID = process.env.REACT_APP_API_KEY;
 
-function Card({ image, alt, FirstName, LastName, email, location, id }) {
+function Card({ image, alt, FirstName, LastName, email, id }) {
   const [userInfo, setUserInfo] = useState();
 
   const clickDetails = () => {
@@ -23,14 +23,18 @@ function Card({ image, alt, FirstName, LastName, email, location, id }) {
       <div className={styles.container__names}>
         <p className={styles.container__firstname}>{FirstName}</p>
         <p className={styles.container__lastname}>{LastName}</p>
-        {userInfo ? (
-          <p className={styles.container__birtday}>{userInfo.gender}</p>
-        ) : null}
       </div>
       <div className={styles.container__email}>
         <p>{email}</p>
       </div>
-      <div>{location}</div>
+
+      <div className={styles.container__country}>
+        {userInfo ? (
+          <p className={styles.container__birtday}>
+            {userInfo.location.country}
+          </p>
+        ) : null}
+      </div>
     </div>
   );
 }
