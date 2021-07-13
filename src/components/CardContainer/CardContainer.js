@@ -25,13 +25,6 @@ function CardContainer() {
     setResult(e.target.value);
   };
 
-  // useEffect(() => {
-  //   const results = users.filter((res) =>
-  //     res.firstName.toLowerCase().includes(result)
-  //   );
-  //   setUsers(results);
-  // }, [result]);
-
   const filtered = users.filter((item) => {
     return Object.keys(item).some((key) => {
       return item[key]
