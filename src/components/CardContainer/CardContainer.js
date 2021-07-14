@@ -55,10 +55,10 @@ function CardContainer() {
       {isloading && <div className={styles.container__loading}>Loading...</div>}
       <div className={styles.container__content}>
         {filtered &&
-          filtered.slice(0, visible).map((user) => {
+          filtered.slice(0, visible).map((user, index) => {
             return (
               <Card
-                key={user.id}
+                key={index}
                 id={user.id}
                 image={user.picture}
                 alt={user.firstName}
